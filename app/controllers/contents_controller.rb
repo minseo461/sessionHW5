@@ -1,4 +1,6 @@
 class ContentsController < ApplicationController
+  before_action :authorize, only: [:new, :edit, :update, :destroy]
+  
   def index
     @contents = Content.all
     
