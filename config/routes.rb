@@ -1,21 +1,19 @@
 Rails.application.routes.draw do
 
-   get 'signup', to: 'users#new', as: 'signup' 
-   get 'login', to: 'sessions#new', as: 'login' 
-   get 'logout', to: 'sessions#destroy', as: 'logout' 
+  get 'users/:id/moder' => 'users#moder', as: 'moder_user'
 
-
-
+  
+  
+  resources :users, only: [:new, :create, :edit]
+  resources :sessions, only: [:new, :create, :destroy]
 
   root 'contents#index'
-  resources :contents do
-    resources :comments, shallow: true
+  
+  resources 'contents' do
+    resources 'comments'
   end
 
 
-  resources :users
-  
-  resources :sessions
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
